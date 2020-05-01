@@ -57,9 +57,14 @@ function windowOnClick(event) {
 	closeSettingsButton = document.getElementById("finishSettingsBtn");
 
 
-	startUploadButton = document.getElementById("startUploadButton");
-	uploadModal = document.getElementById("uploadModal");
-	closeUploadButton = document.getElementById("closeUploadButton");
+	startUploadContentButton = document.getElementById("startUploadContentButton");
+	uploadContentModal = document.getElementById("uploadContentModal");
+	closeUploadContentButton = document.getElementById("closeUploadContentButton");
+	
+	startUploadStyleButton = document.getElementById("startUploadStyleButton");
+	uploadStyleModal = document.getElementById("uploadStyleModal");
+	closeUploadStyleButton = document.getElementById("closeUploadStyleButton");
+	
 	
 	target_images_slider_div = document.getElementById("target_images_slider_div");
 	finishImagesSlider = document.getElementById("finishImagesSlider");
@@ -67,12 +72,16 @@ function windowOnClick(event) {
 	resetButton = document.getElementById("resetBtn");
 
 	
-	if( event.target == resetButton && document.getElementById("content_style_original_images").hasChildNodes())
-		return;
+  if (event.target == resetButton && (document.getElementById("content_original_images").hasChildNodes() ||
+    document.getElementById("style_original_images").hasChildNodes()) ) {
+    document.getElementById("style_original_images").innerHTML = '';
+    document.getElementById("content_original_images").innerHTML = '';
+  }
 	if (event.target == startButton) 
 	{
-		if (!document.getElementById("content_style_original_images").hasChildNodes()) {
-			alert('PLease Select Images First');
+		if (!document.getElementById("content_original_images").hasChildNodes() || 
+			!document.getElementById("style_original_images").hasChildNodes()) {
+			alert('PLease Select Main & Style Images First');
 			return;
 		} else if (document.getElementById("user_email").value != "")
 			{
@@ -81,7 +90,8 @@ function windowOnClick(event) {
 			}
 		else
 			toggleModal(userInfoModal);
-	} else if(event.target == settingsButton && document.getElementById("content_style_original_images").hasChildNodes() ){
+	} else if(event.target == settingsButton && document.getElementById("content_original_images").hasChildNodes() &&
+					document.getElementById("style_original_images").hasChildNodes()	){
 			document.getElementById("user_email").value = "";
 			toggleModal(userSettingsModal);
   } else if (event.target == closeStartButton && document.getElementById("user_email").value !=  "" ) {
@@ -89,10 +99,14 @@ function windowOnClick(event) {
 		  toggleModal(target_images_slider_div);
 	}else if(event.target == closeSettingsButton ){
 			toggleModal(userSettingsModal);
-	}else if(event.target == startUploadButton ){
-			toggleModal(uploadModal);
-	}else if(event.target == closeUploadButton ){
-			toggleModal(uploadModal);
+	}else if(event.target == startUploadContentButton ){
+			toggleModal(uploadContentModal);
+	}else if(event.target == startUploadStyleButton ){
+			toggleModal(uploadStyleModal);			
+	}else if(event.target == closeUploadContentButton ){
+			toggleModal(uploadContentModal);
+	}else if(event.target == closeUploadStyleButton ){
+			toggleModal(uploadStyleModal);
 	}else if(event.target == finishImagesSlider ){
 		document.getElementById("resetBtn").click();
 		document.getElementById("user_email").value = "";
