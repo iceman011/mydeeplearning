@@ -3,7 +3,7 @@ seaborn==0.8.1
 pandas
 #from PIL import Image
 #from io import BytesIO
-numpy==1.18.2
+numpy==1.22.0
 torch==1.4.0
 requests==2.21.0
 torchvision==0.5.0
