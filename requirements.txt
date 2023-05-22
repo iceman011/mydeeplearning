@@ -5,5 +5,5 @@ pandas
 #from io import BytesIO
 numpy==1.18.2
 torch==1.4.0
-requests==2.21.0
+requests==2.31.0
 torchvision==0.5.0
